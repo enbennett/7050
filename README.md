@@ -1,0 +1,3 @@
+# 7050HW1
+CS 7050
+Homework 1 for CS7050 Fall 2023
