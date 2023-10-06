@@ -25,6 +25,7 @@ int main(void)
     GetEdges(edges,countEdges);
     BuildAdjacency(vertices,edges,countVertices,countEdges);
     PrintVertices(vertices,countVertices);
+    
     /******************************************************/
     PrintBFS(vertices,countVertices,edges,countEdges,1);
     PrintDFS(vertices,countVertices,edges,countEdges);

@@ -2,6 +2,7 @@
 #include "cs4050.h"
 #include "DFS.h"
 
+
 void VisitDFS(int time, int i, Vertex * V, int countV, Edge * E, int countE);
 
 void PrintDFS(Vertex * V, int countV, Edge * E, int countE)
@@ -17,7 +18,7 @@ void PrintDFS(Vertex * V, int countV, Edge * E, int countE)
 
      printf("\nDFS: \n"); // print statement to indicate what search we are printing
 
-     for (int i =0; i<countV; i++)
+     for (int i =0; i<countV; i++) // for all nodes
      {
         if (V[i].color == WHITE) // check if it's been visited
             {
@@ -36,10 +37,15 @@ void VisitDFS(int time, int i, Vertex * V, int countV, Edge * E, int countE)
     PAdjacency temp = V[i].list;
     while(temp != NULL) // scroll through all of the connecting nodes in adjacency list
     {
-        if(V[(temp->pEdge->to)-1].color == WHITE) // if we haven't visited yet
+        if(V[(temp->pEdge->to)-1].color == WHITE) // if the to node hasn't been visited
         {
             V[(temp->pEdge->to)-1].predecessor = V[i].number; 
             VisitDFS(time, ((temp->pEdge->to)-1), V, countV, E, countE); // visit and then recursively process so we will get to edge of graph
+        }
+        if(V[(temp->pEdge->from)-1].color == WHITE) // if the from node hasn't been visited (only important for undirected graphs)
+        {
+            V[(temp->pEdge->from)-1].predecessor = V[i].number; 
+            VisitDFS(time, ((temp->pEdge->from)-1), V, countV, E, countE); // visit and then recursively process so we will get to edge of graph
         }
         temp = temp->next;
     }
@@ -49,3 +55,4 @@ void VisitDFS(int time, int i, Vertex * V, int countV, Edge * E, int countE)
     V[i].color = BLACK; // mark black as it is finished
     printf(" %i ", V[i].number); // print finished vertex
 }
+
